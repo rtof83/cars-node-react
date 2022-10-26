@@ -8,7 +8,7 @@ const Store = conn.define('store', {
         allowNull: false,
         primaryKey: true
     },
-    local: {
+    name: {
         type: Sequelize.STRING,
         allowNull: false
     }
