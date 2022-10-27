@@ -7,7 +7,7 @@
     "start": "nodemon ./index.js localhost 3001"
   },
   "keywords": [],
-  "author": "",
+  "author": "Renato Tadeu",
   "license": "",
   "dependencies": {
     "cors": "^2.8.5",

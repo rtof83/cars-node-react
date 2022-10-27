@@ -15,5 +15,5 @@ const storeRoutes = require('./routes/storeRoutes');
 app.use('/stores', storeRoutes);
 
 // car routes
-// const carRoutes = require('./routes/carRoutes');
-// app.use('/cars', carRoutes);
+const carRoutes = require('./routes/carRoutes');
+app.use('/cars', carRoutes);

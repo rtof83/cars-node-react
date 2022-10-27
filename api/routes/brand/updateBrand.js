@@ -1,7 +1,7 @@
-const putBrand = require('express').Router();
+const updateBrand = require('express').Router();
 const Brand = require('../../models/brand');
 
-putBrand.put("/:id", async (req, res) => {
+updateBrand.put('/:id', async (req, res) => {
   const brand = await Brand.findByPk(req.params.id);
 
   if (!brand)
@@ -16,4 +16,4 @@ putBrand.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = putBrand;
+module.exports = updateBrand;

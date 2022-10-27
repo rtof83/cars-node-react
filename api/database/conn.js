@@ -1,18 +1,12 @@
 const Sequelize = require('sequelize');
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
-const DB_NAME = '';
-const DB_USER = '';
-const DB_PASS = '';
-
-const DB_HOST = 'localhost';
-const DB_PORT = 3306;
-
-const conn = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
-    dialect: 'mysql',
-    host: DB_HOST,
-    port: DB_PORT
+const conn = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+    dialect: process.env.DB_DIALECT,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT
 });
 
 (async () => {

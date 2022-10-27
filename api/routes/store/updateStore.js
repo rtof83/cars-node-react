@@ -1,7 +1,7 @@
-const putStore = require('express').Router();
+const updateStore = require('express').Router();
 const Store = require('../../models/store');
 
-putStore.put('/:id', async (req, res) => {
+updateStore.put('/:id', async (req, res) => {
   const store = await Store.findByPk(req.params.id);
 
   if (!store)
@@ -16,4 +16,4 @@ putStore.put('/:id', async (req, res) => {
   }
 });
 
-module.exports = putStore;
+module.exports = updateStore;
