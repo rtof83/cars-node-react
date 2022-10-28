@@ -1,7 +1,10 @@
 const Sequelize = require('sequelize');
 const express = require('express');
 const app = express();
+
 require('dotenv').config();
+
+app.use(express.json());
 
 const conn = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     dialect: process.env.DB_DIALECT,

@@ -1,19 +1,16 @@
-// initial config
-const express = require('express');
-const cors = require('cors');
 const { app } = require('./database/conn');
+const cors = require('cors');
 
-app.use(express.json());
 app.use(cors());
 
-// brand routes
-const brandRoutes = require('./routes/brandRoutes');
-app.use('/brands', brandRoutes);
+const models = require('./models');
+const methods = require('./methods');
+const routes = [ '/cars', '/stores', '/brands', '/users' ];
 
-// store routes
-const storeRoutes = require('./routes/storeRoutes');
-app.use('/stores', storeRoutes);
-
-// car routes
-const carRoutes = require('./routes/carRoutes');
-app.use('/cars', carRoutes);
+// mount routes
+for (let i = 0; i < routes.length; i++) {
+  // for each method
+  for (let j = 0; j < methods.length; j++) {
+    methods[j](routes[i], models[i]);
+  };
+};
