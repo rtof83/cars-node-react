@@ -1,7 +1,8 @@
 const { app } = require('../database/conn');
+const checkJWT = require('../middlewares/checkJWT');
 
 const putRecord = (route, model) => {
-  app.put(`${route}/:id`, async (req, res) => {
+  app.put(`${route}/:id`, checkJWT, async (req, res) => {
     const result = await model.findByPk(req.params.id);
     
     if (!result)
@@ -12,7 +13,7 @@ const putRecord = (route, model) => {
 
       res.status(200).json({ message: 'Record updated successfully!' });
     } catch (error) {
-      res.status(500).json({ erro: error });
+      res.status(500).json({ error: error });
     };
   });
 };

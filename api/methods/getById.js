@@ -10,8 +10,8 @@ const getById = (route, model) => {
   
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ erro: error });
-    }
+      res.status(500).json({ error: error });
+    };
   });
 };
 

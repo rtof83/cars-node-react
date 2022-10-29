@@ -1,7 +1,8 @@
 const { app } = require('../database/conn');
+const checkJWT = require('../middlewares/checkJWT');
 
 const deleteRecord = (route, model) => {
-  app.delete(`${route}/:id`, async (req, res) => {
+  app.delete(`${route}/:id`, checkJWT, async (req, res) => {
     const result = await model.findByPk(req.params.id);
     
     if (!result)
@@ -12,7 +13,7 @@ const deleteRecord = (route, model) => {
   
       res.status(200).json({ message: 'Record deleted successfully!' });
     } catch (error) {
-      res.status(500).json({ erro: error });
+      res.status(500).json({ error: error });
     };
   });
 };

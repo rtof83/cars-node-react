@@ -1,7 +1,8 @@
 const { app } = require('../database/conn');
+const checkJWT = require('../middlewares/checkJWT');
 
 const postRecord = (route, model) => {
-  app.post(route, async (req, res) => {
+  app.post(route, checkJWT, async (req, res) => {
     const result = await model.findOne({ where: { name: req.body.name } });
     
     if (result)
@@ -14,7 +15,7 @@ const postRecord = (route, model) => {
   
       res.status(201).json({ message: 'Record inserted successfully!' });
     } catch (error) {
-      res.status(500).json({ erro: error });
+      res.status(500).json({ error: error });
     };
   });
 };
