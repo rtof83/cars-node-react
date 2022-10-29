@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import api from '../api';
-import Carousel from "../components/Carousel";
 import CardFood from "../components/Card";
 import { UserContext } from '../contexts/Contexts';
 
@@ -28,15 +27,15 @@ const Home = () => {
     };
 
     useEffect(() => {
+        console.log(user.token);
         getProducts();
+        api.defaults.headers.common = {'authorization': `Bearer ${user.token}`};
     }, []);
 
     return (
-        <>
-            {/* <Carousel /> */}
-            
-            <div className="container text-center">    
-                <h3>Olá { user.name || `Visitante` }, faça seu pedido!</h3><br />
+        <>           
+            <div className="container text-center">
+                { user.name && <><h3>Olá {user.name}</h3><br /></> }
 
                 { loading ? <h3><CircularProgress /></h3> : <>
                 <Box sx={{ flexGrow: 1 }}>

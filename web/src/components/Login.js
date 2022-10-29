@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import { UserContext } from '../contexts/Contexts';
 
@@ -11,21 +11,22 @@ const Login = () => {
     const [ values, setValues ] = useState({ email: '', password: '' });
     const [ , setUser ] = useContext(UserContext);
 
-    const { cart } = useParams();
     const navigate = useNavigate();
 
     const getUser = async () => {
-        await api.post('customers/getUser', { email: values.email, password: values.password })
+        await api.post('login', { name: values.name, password: values.password })
           .then(({ data }) => {
-            if (data.length > 0) {
-              setUser(data[0]);
-              cart ? navigate('/cart') : navigate('/');
-            } else {
-              setUser([]);
-              alert('Usuário não encontrado!');
-            }
+            setUser(data);
+            localStorage.setItem('auth', JSON.stringify(data));
+            navigate('/');
           })
-          .catch(e => console.log(e));
+          .catch(e => {
+            if (e.response.status === 401) {
+              alert('Usuário ou senha inválidos!');
+              setUser([]);
+            };
+            console.log(e);
+          });
     }
     
       return (
@@ -41,7 +42,7 @@ const Login = () => {
               alignItems="stretch"
               className="gridCustomer">
 
-            <TextField id="txtEmail" label="Email" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />
+            <TextField id="txtUser" label="Usuário" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
             <TextField id="txtPassword" label="Senha" variant="outlined" type="password" value={values.password} onChange={e => setValues({...values, password: e.target.value})} onKeyDown={e => e.key === 'Enter' && getUser()} />
         
         </Grid>

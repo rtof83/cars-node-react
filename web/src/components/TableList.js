@@ -38,7 +38,7 @@ const TableList = ( listName,
 
     } else if (cell.field === 'list') {
       return item.list.map(i =>
-          <div id={i._id}>{`${i.quantity} x ${i.product}`}</div>);
+          <div id={i.id}>{`${i.quantity} x ${i.product}`}</div>);
 
     } else if (cell.field === 'date') {
       return new Date(item.date).toLocaleDateString('pt-BR');
@@ -83,7 +83,7 @@ const TableList = ( listName,
 
               {data && data.map((item) => (
                 !item.page ?
-                  <StyledTableRow key={item._id}>
+                  <StyledTableRow key={item.id}>
 
                     { tableCell.map(cell =>
                       <StyledTableCell align={cell.align}>

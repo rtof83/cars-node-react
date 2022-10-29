@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
+
 import Home from './pages/home';
 import Car from './pages/car';
 import Brand from './pages/brand';
 import Store from './pages/store';
+
 import ListCars from './lists/listCars';
 import ListBrands from './lists/listBrands';
 import ListStores from './lists/listStores';
+import ListUsers from './lists/listUsers';
+
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './components/Login';
-// import Cart from './pages/cart';
+import User from './pages/user';
+
+import NotFound from './pages/notFound';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SearchContext, ListContext, UserContext} from './contexts/Contexts';
@@ -27,22 +33,31 @@ const App = () => {
       <Router>
         <Header />
             <Routes>
-            <Route exact path='/' element={<Home />} />
+              <Route exact path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+            
+            {/* <Route path='/car' render={() => Check(<Car />)} /> */}
 
-            <Route path='/car' element={<Car />} />
-            <Route path='/car/:id' element={<Car />} />
+            { user.auth && <>
+              <Route path='/car' element={<Car />} />
+              <Route path='/car/:id' element={<Car />} />
 
-            <Route path='/brand' element={<Brand />} />
-            <Route path='/brand/:id' element={<Brand />} />
+              <Route path='/brand' element={<Brand />} />
+              <Route path='/brand/:id' element={<Brand />} />
 
-            <Route path='/store' element={<Store />} />
-            <Route path='/store/:id' element={<Store />} />
+              <Route path='/store' element={<Store />} />
+              <Route path='/store/:id' element={<Store />} />
 
-            <Route path='/listCars' element={<ListCars />} />
-            <Route path='/listBrands' element={<ListBrands />} />
-            <Route path='/listStores' element={<ListStores />} />
+              <Route path='/user' element={<User />} />
+              <Route path='/user/:id' element={<User />} />
 
-            <Route path='/login' element={<Login />} />
+              <Route path='/listCars' element={<ListCars />} />
+              <Route path='/listBrands' element={<ListBrands />} />
+              <Route path='/listStores' element={<ListStores />} />
+              <Route path='/listusers' element={<ListUsers />} />
+            </> }
+
+            <Route path='*' exact={true} element={<NotFound />} />
 
             {/* <Route path='/login/:cart' element={<Login />} />
             <Route path='/cart' element={<Cart />} />

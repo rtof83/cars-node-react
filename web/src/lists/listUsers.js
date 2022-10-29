@@ -4,7 +4,7 @@ import { SearchContext } from '../contexts/Contexts';
 import TableList from '../components/TableList';
 import api from '../api';
 
-const ListStores = () => {
+const ListUsers = () => {
   const navigate = useNavigate();
   const [ , setSearchContext ] = useContext(SearchContext);
 
@@ -19,7 +19,7 @@ const ListStores = () => {
     setLoading(true);
 
     // const query = !searchById ? 'products?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'products/' + searchById;
-    await api.get('stores')
+    await api.get('users')
       .then(({ data }) => {
         data.length === undefined ? setData([data]) : setData(data);
       })
@@ -32,7 +32,7 @@ const ListStores = () => {
   };
 
   useEffect(() => {
-    setSearchContext({ id: 'ID', name: 'Nome da Loja' });
+    setSearchContext({ id: 'ID', name: 'Nome do Usuário' });
   }, []);
   
   useEffect(() => {    
@@ -48,10 +48,12 @@ const ListStores = () => {
 
   return (
     <>
-      { TableList( 'Lojas',
+      { TableList( 'Usuários',
 
                    [ { align: 'center', fieldName: 'ID', field: 'id' },
-                     { align: 'left', fieldName: 'Nome', field: 'name' } ],
+                     { align: 'center', fieldName: 'Nome', field: 'name' },
+                     { align: 'center', fieldName: 'Email', field: 'email' },
+                     { align: 'center', fieldName: 'Tipo Acesso', field: 'access' } ],
 
                    loading,
 
@@ -65,10 +67,10 @@ const ListStores = () => {
                    api,
                    data, getData,
                    page, setPage,
-                   navigate, 'store' )
+                   navigate, 'user' )
       }
     </>
   );
 };
 
-export default ListStores;
+export default ListUsers;
