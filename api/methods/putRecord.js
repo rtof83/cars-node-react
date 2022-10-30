@@ -1,8 +1,8 @@
 const { app } = require('../database/conn');
-const checkJWT = require('../middlewares/checkJWT');
+const checkRoute = require('../middlewares/checkRoute');
 
 const putRecord = (route, model) => {
-  app.put(`${route}/:id`, checkJWT, async (req, res) => {
+  app.put(`${route}/:id`, checkRoute, async (req, res) => {
     const result = await model.findByPk(req.params.id);
     
     if (!result)

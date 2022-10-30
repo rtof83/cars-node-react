@@ -1,8 +1,8 @@
 const { app } = require('../database/conn');
-const checkJWT = require('../middlewares/checkJWT');
+const checkRoute = require('../middlewares/checkRoute');
 
 const postRecord = (route, model) => {
-  app.post(route, checkJWT, async (req, res) => {
+  app.post(route, checkRoute, async (req, res) => {
     const result = await model.findOne({ where: { name: req.body.name } });
     
     if (result)

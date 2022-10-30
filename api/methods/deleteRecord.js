@@ -1,8 +1,8 @@
 const { app } = require('../database/conn');
-const checkJWT = require('../middlewares/checkJWT');
+const checkRoute = require('../middlewares/checkRoute');
 
 const deleteRecord = (route, model) => {
-  app.delete(`${route}/:id`, checkJWT, async (req, res) => {
+  app.delete(`${route}/:id`, checkRoute, async (req, res) => {
     const result = await model.findByPk(req.params.id);
     
     if (!result)
