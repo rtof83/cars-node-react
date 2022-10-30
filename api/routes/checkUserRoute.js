@@ -2,7 +2,6 @@ const { app } = require('../database/conn');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
-// const Auth = require('../models/auth');
 
 const checkUser = (route) => {
   app.post(route, async (req, res) => {
@@ -15,15 +14,14 @@ const checkUser = (route) => {
       if (!user)
         return res.status(401).json({ error: 'user or password invalid' });
   
+      // sign token
       const token = jwt.sign({ id: user.id, access: user.access },
                                process.env.SECRET,
                              { expiresIn: process.env.SECRET_TIMEOUT });
 
-      // await Auth.create({ id: user.id, name: user.name, token: token });
-
       return res.json({ auth: true, id: user.id, name: user.name, access: user.access, token });
     } catch (error) {
-      res.status(500).json({ erro: error });
+      return res.status(500).json({ erro: error });
     };
   });
 };

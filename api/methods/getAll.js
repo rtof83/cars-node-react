@@ -30,9 +30,13 @@ const getAll = (route, model) => {
         const pageNumber = !req.query.page ? 1 : req.query.page;
         const startFrom = (pageNumber - 1) * pageSize;
 
-        if (route === '/cars') query += ` WHERE c.name LIKE :search
-                                          ORDER BY c.price
-                                          LIMIT :startFrom, :pageSize`;
+        if (route === '/cars' && req.query.name)
+          query += ` WHERE c.name LIKE :search
+                     ORDER BY c.price
+                     LIMIT :startFrom, :pageSize`;
+        else if (route === '/cars')
+          query += ` ORDER BY c.price
+                     LIMIT :startFrom, :pageSize`;
 
         result = await (query ? conn.query(query, { replacements: {
                           startFrom: startFrom,

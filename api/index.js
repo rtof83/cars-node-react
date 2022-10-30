@@ -16,7 +16,11 @@ for (let i = 0; i < routes.length; i++) {
   };
 };
 
+
 // custom routes
 
 // login to sign token
-require('./routes/checkUser')('/login');
+require('./routes/checkUserRoute')('/login');
+
+// validate access
+require('./routes/checkValidate')('/validate');
