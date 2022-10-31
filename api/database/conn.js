@@ -20,7 +20,7 @@ conn
   .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
-    app.listen(3001);
+    app.listen(process.env.APP_PORT);
   })
   .catch((err) => {
     console.log('Unable to connect to the database:', err);
