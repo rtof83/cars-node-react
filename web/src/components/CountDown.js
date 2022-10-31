@@ -30,13 +30,12 @@ const CountDown = () => {
       setUser([]);
       localStorage.clear();
       navigate('/');
-      
-      alert('Atenção! Necessário realizar novo login.');
+    } else if (distance <= 10) {
+      setResult('Atenção! Necessário realizar novo login.');
     } else {
       // Output the result
       setResult(minutes + "m " + seconds + "s");
     }
-
   }, 1000);
 
   return (
