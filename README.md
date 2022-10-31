@@ -6,6 +6,7 @@
 - DB -> MySQL;
 - Ferramentas:
     - Visual Studio Code 1.72.2;
+    - HeidiSQL 12.1.0;
     - Console de Gerenciamento da AWS;
 
 &nbsp;
@@ -36,7 +37,7 @@
     name: String
 ```
 
-- Usuário (user):
+- Usuário (User):
 ```javascript
     id: Integer,
     name: String,
@@ -53,6 +54,7 @@
 &nbsp;
 
 ## Inicialização
+- [CREATE DATABASE database](https://github.com/rtof83/cars-node-react/blob/main/samples/database.sql) (configuração inicial .env)
 - /web e /api -> npm start;
 - porta padrão API: 3001;
 - porta padrão WEB: 3000;
@@ -62,14 +64,15 @@
 ## Configurações
 - [API - conexão com a base de dados](https://github.com/rtof83/cars-node-react/blob/main/api/database/conn.js);
 - [FRONT - conexão com a API](https://github.com/rtof83/cars-node-react/blob/main/web/src/api.js);
+- [ENV - arquivo de configuração inicial](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example) (deve ser renomeado para .env)
 
 &nbsp;
 
 ### a aplicação pode ser acessada através do link:
 - http://car-catalog-node-mysql.s3-website-us-east-1.amazonaws.com
 - FRONT armazenado em instância Amazon S3;
-- API instanciado em EC2 AWS (http://18.234.224.108:3002);
-- Base de Dados instanciado em RDS (database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306);
+- API instanciada em EC2 AWS (http://18.234.224.108:3002);
+- Base de Dados instanciada em RDS (database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306);
 
 &nbsp;
 
@@ -78,114 +81,120 @@
 
 - Utilização de [models Sequelize](https://github.com/rtof83/cars-node-react/tree/main/api/models);
 
+- Autenticação via Bearer Authentication (JWT);
+
 &nbsp;
 
 - Rotas de acesso:
 
-    - POST
-        - {baseURL}/customers/getUser -> retorna cliente por email e senha;
-        - {baseURL}/customers -> cadastra cliente;
-        - {baseURL}/products -> cadastra produto;
-        - {baseURL}/orders -> cadastra pedido;
+    - POST (rotas principais)
+        - {baseURL}/brands -> cadastra marca;
+        - {baseURL}/store -> cadastra loja;
+        - {baseURL}/cars -> cadastra carro;
+        - {baseURL}/users -> cadastra usuário;
+
+    &nbsp;
 
     - GET
-        - {baseURL}/customers -> retorna todos os clientes;
-        - {baseURL}/customers/{id} -> retorna cliente por id;
-        - {baseURL}/customers?page={page} -> retorna clientes por página;
-        - {baseURL}/customers?name={name} -> retorna clientes por nome;
-        - {baseURL}/customers?page={page}&name={name} -> retorna clientes por nome e página;
+        - {baseURL}/{route} -> retorna todos os registros;
+        - {baseURL}/{route}/{id} -> retorna registro por id;
+        - {baseURL}/{route}?page={page} -> retorna registros por página;
+        - {baseURL}/{route}?name={name} -> retorna registros por nome;
+        - {baseURL}/{route}?page={page}&name={name} -> retorna registros por nome e página;
 
-        - {baseURL}/products -> retorna todos os produtos;
-        - {baseURL}/products/{id} -> retorna produto por id;
-        - {baseURL}/products?page={page} -> retorna produtos por página;
-        - {baseURL}/products?name={name} -> retorna produtos por nome;
-        - {baseURL}/products?page={page}&name={name} -> retorna produtos por nome e página;
+    &nbsp;
 
-        - {baseURL}/orders -> retorna todos os pedidos;
-        - {baseURL}/orders/{id} -> retorna pedido por id;
-        - {baseURL}/orders?page={page} -> retorna pedidos por página;
-        - {baseURL}/orders?page={page}&customer={customer} -> retorna pedidos por cliente e página;
+    - PUT
+        - {baseURL}/{route}/{id} -> atualiza registro;
 
-    - PATCH
-        - {baseURL}/customers/{id} -> atualiza cliente;
-        - {baseURL}/products/{id} -> atualiza produto;
+    &nbsp;
 
     - DELETE
-        - {baseURL}/customers/{id} -> exclui cliente;
-        - {baseURL}/products/{id} -> exclui produto;
-        - {baseURL}/orders/{id} -> atualiza pedido;
+        - {baseURL}/{route}/{id} -> exclui registro;
 
 - Middlewares:
-    - [checkEmail](https://github.com/rtof83/ecommerce-node-react/blob/main/api/middlewares/checkEmail.js) -> verifica se há um email existente ao tentar cadastrar novo Cliente;
+    - [checkRoute](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkRoute.js):
+        - recebe token via cabeçalho, verifica se a rota é pública ou privada e garante acesso;
+
+    - [checkUser](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkUser.js):
+        - recebe token via cabeçalho;
+        - Usuário com grupo de acesso 'admin' possui acesso a todos os recursos;
+        - Usuário com grupo de acesso 'user' possui acesso somente a listagens (este usuário visualiza e altera apenas suas informações (rota /users));
+
+    - [checkAdminExists](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkAdminExists.js):
+        - garante a criação de um usuário padrão admin na primeira execução da base de dados;
+
+    - [checkAdminDel](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkAdminDel.js):
+        - garante a manutenção de pelo menos um usuário admin ao excluir usuários;
+    
+    - [validate](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/validate.js):
+        - criação de assinatura JWT (configuração inicial .env);
+
+- Paginação:
+    - retorna até 10 registros por página (configuração inicial .env);
 
 - Buscas:
-    - retorna até 10 registros por página;
-
-- Inserção de pedidos:
-    - o total do pedido e a data e hora atual são inseridos através da API;
-    - a quantidade de produtos é atualizada de forma automatizada (é verificado se a quantidade solicitada é igual ou menor que o estoque);
+    - localização por id ou nome em Carros, Marcas, Lojas e Usuários;
 
 &nbsp;
 
-#### exemplo de inserção e alteração de Cliente
+#### exemplo de inserção e alteração de Carro
 
 ```javascript
 {
-    "name": "Test Client",
-    "cpf": "99999999999",
-    "email": "client@test.com",
-    "address": "Client Address, 95",
-    "phone": "(99) 99999-9999",
-    "birth": "1999-01-01",
-    "password": "pass"
+    "name": "Car Name",
+    "model": "2000",
+    "price": 50000,
+    "km": 10000,
+    "image": "https://image.com/01.jpg"
+    "desc": "car description",
+    "brandId": 1,
+    "storeId": 1
 }
 ```
 
-#### exemplo de inserção e alteração de Produto
+#### exemplo de inserção e alteração de Marca
 
 ```javascript
 {
-    "sku": "888",
-    "name": "Product Test",
-    "price": 99.9,
-    "quantity": 30,
-    "desc": "description",
-    "image": "https://image.com/image.jpg"
+    "name": "Brand 01",
 }
 ```
 
-#### exemplo de inserção de Pedido
+#### exemplo de inserção e alteração de Loja
 
 ```javascript
 {
-    "customer": "ObjectId",
-    "address": "Payment Street",
-    "payment": "pix",
-    "items": [{
-                "sku": "888"
-                "quantity": 2,
-              },
-              {
-                 "sku": "999ab"
-                 "quantity": 2,
-              }]
+    "name": "Store 01",
+}
+```
+
+#### exemplo de inserção e alteração de Usuário
+
+```javascript
+{
+    "name": "user",
+    "password": "123",
+    "email": "user@system.com",
+    "access": "admin"
 }
 ```
 
 &nbsp;
 
 ### Implementações:
-- Cadastro, alteração e exclusão de Clientes;
-- Cadastro, alteração e exclusão de Produtos;
-- Lista Clientes;
-- Lista Produtos;
-- Lista Pedidos;
-- Carrinho;
+- Cadastro, alteração e exclusão de Carros;
+- Cadastro, alteração e exclusão de Marcas;
+- Cadastro, alteração e exclusão de Lojas;
+- Cadastro, alteração e exclusão de Usuários;
+- Lista Carros;
+- Lista Marcas;
+- Lista Lojas;
+- Lista Usuários;
 - Login;
 
 &nbsp;
 
 ### Próximos passos:
-- Utilizar localstorage (pedidos) concomitante ao ContextAPI;
-- Lista de pedidos detalhada;
-- Componentização das rotas;
+- Paginação na home;
+- Página detalhada sobre o Carro selecionado;
