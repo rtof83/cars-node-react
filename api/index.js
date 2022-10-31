@@ -5,8 +5,9 @@ app.use(cors());
 
 const models = require('./models');
 const methods = require('./methods');
-const { application } = require('express');
 const routes = [ '/cars', '/stores', '/brands', '/users' ];
+
+const checkAdminExists = require('./middlewares/checkAdminExists');
 
 // mount standard routes
 for (let i = 0; i < routes.length; i++) {
@@ -24,3 +25,6 @@ require('./routes/checkUserRoute')('/login');
 
 // validate access
 require('./routes/checkValidate')('/validate');
+
+// verify if any admin exists on database
+checkAdminExists();
