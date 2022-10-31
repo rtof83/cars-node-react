@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/Contexts';
 import searchPanel from './SearchPanel';
 import deleteRecord from './DeleteRecord';
 import CountPage from './CountPage';
@@ -16,7 +17,7 @@ import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-import Foods from '../assets/foods.png';
+import CarsStamp from '../assets/cars.webp';
 
 const TableList = ( listName,
                     tableCell,
@@ -27,24 +28,16 @@ const TableList = ( listName,
                     page, setPage,
                     navigate, path ) => {
 
+  const [ user ] = useContext(UserContext);
+
   // format specific cells
   const checkCell = (item, cell) => {
-    if (cell.field === 'image') {
-      return (<Avatar alt="food"
-                src={ item.image ? item.image : Foods }
-                sx={{ width: 30, height: 30 }}
-              />
-      );
-
-    } else if (cell.field === 'list') {
+    if (cell.field === 'list') {
       return item.list.map(i =>
           <div id={i.id}>{`${i.quantity} x ${i.product}`}</div>);
 
-    } else if (cell.field === 'date') {
-      return new Date(item.date).toLocaleDateString('pt-BR');
-
     } else if (cell.field === 'total' || cell.field === 'price') {
-      return parseFloat(item[cell.field]).toFixed(2);
+      return 'R$ ' + parseFloat(item[cell.field]).toFixed(2);
 
     } else {
       return item[cell.field];
@@ -58,12 +51,15 @@ const TableList = ( listName,
 
       <h3>Lista de {listName}</h3>
 
-      {searchPanel( srPanFn.searchById,
-                    srPanFn.searchByName,
-                    srPanFn.setSearch,
-                    srPanFn.setSearchById,
-                    srPanFn.setSearchByName,
-                    srPanFn.getDefault )}
+      { ((user.access === 'admin') ||
+         (user.access !== 'admin' && path !== 'user')) &&
+          searchPanel( srPanFn.searchById,
+                       srPanFn.searchByName,
+                       srPanFn.setSearch,
+                       srPanFn.setSearchById,
+                       srPanFn.setSearchByName,
+                       srPanFn.getDefault )
+      }
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700, mt: 3 }} aria-label="customized table">

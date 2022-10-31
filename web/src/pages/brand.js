@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../contexts/Contexts';
 
@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import api from '../api';
 
 const Brand = () => {
-  const [ user ] = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
   
@@ -21,11 +20,6 @@ const Brand = () => {
       const brand = { name: values.name };
 
       const query = id ? api.put(`brands/${id}`, brand) : api.post('brands', brand);
-
-        // query.headers = { 'Authorization': `Bearer ${user.token}` };
-
-        console.log(id)
-
       await query
         .then(() => navigate('/listBrands'))
         .catch(e => {

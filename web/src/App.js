@@ -18,16 +18,16 @@ import User from './pages/user';
 import NotFound from './pages/notFound';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { SearchContext, ListContext, UserContext} from './contexts/Contexts';
+import { SearchContext, UserContext} from './contexts/Contexts';
 
 const App = () => {
   const [ user, setUser ] = useState([]);
-  const [ list, setList ] = useState([]);
+  // const [ list, setList ] = useState([]);
   const [ search, setSearch ] = useState([]);
 
   return (
     <UserContext.Provider value={[ user, setUser ]}>
-    <ListContext.Provider value={[ list, setList ]}>
+    {/* <ListContext.Provider value={[ list, setList ]}> */}
     <SearchContext.Provider value={[ search, setSearch ]}>
 
       <Router>
@@ -35,8 +35,6 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
-            
-            {/* <Route path='/car' render={() => Check(<Car />)} /> */}
 
             { user.auth && <>
               <Route path='/car' element={<Car />} />
@@ -59,15 +57,12 @@ const App = () => {
 
             <Route path='*' exact={true} element={<NotFound />} />
 
-            {/* <Route path='/login/:cart' element={<Login />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/listOrder' element={<ListOrder />} /> */}
           </Routes>
         <Footer />
       </Router>
 
     </SearchContext.Provider>
-    </ListContext.Provider>
+    {/* </ListContext.Provider> */}
     </UserContext.Provider>
   )
 };

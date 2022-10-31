@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../contexts/Contexts';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-// import CheckCPF from '../components/CheckCPF';
-// import InputMask from 'react-input-mask';
 
 import api from '../api';
 
@@ -25,6 +24,7 @@ const User = () => {
                                              access: '' });
 
     const navigate = useNavigate();
+    const [ user ] = useContext(UserContext);
     const { id } = useParams();
 
     const insertCustomer = async () => {
@@ -90,6 +90,7 @@ const User = () => {
             <FormControl sx={{ width: 300 }}>
               <InputLabel id="lblBrand">Tipo Acesso</InputLabel>
               <Select
+                disabled={user.access === 'admin' || !user.access ? false : true}
                 labelId="lblBrand"
                 id="sltBrand"
                 value={values.access}

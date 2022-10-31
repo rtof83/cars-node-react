@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ListContext } from '../contexts/Contexts';
-import { useNavigate } from 'react-router-dom';
+// import { ListContext } from '../contexts/Contexts';
+// import { useNavigate } from 'react-router-dom';
 
-import Card from '@mui/material/Card';
+import CardMui from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -10,36 +10,18 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import Foods from '../assets/foods.png';
+import CarsStamp from '../assets/cars.webp';
 
-const CardFood = ({ id, image, name, desc, price }) => {
-  const [ list, setList ] = useContext(ListContext);
-  const navigate = useNavigate();
-
-  const order = (add) => {
-    if (list.filter(item => item.sku === add.sku).length > 0) {
-      alert('Produto já foi adicionado ao carrinho.');
-    } else {
-      setList(prevList => ([ ...prevList, add ]));
-      navigate('/cart');
-    }
-  }
-
+const Card = ({ id, image, name, desc, price }) => {
   return (
-    <Card className='cardList'
-          onClick={() => order({ id: id,
-                                 image: image,
-                                 name: name,
-                                 quantity: 1,
-                                 quantMax: 1,
-                                 price: price })} sx={{ maxWidth: 265, height: 345 }}>
+    <CardMui className='cardList' sx={{ maxWidth: 265, height: 345 }}>
       <CardHeader
         title={name}
       />
       <CardMedia
         component="img"
         height="190"
-        image={image ? image : Foods}
+        image={image ? image : CarsStamp}
         alt={name}
       />
 
@@ -57,8 +39,8 @@ const CardFood = ({ id, image, name, desc, price }) => {
           R$ {parseFloat(price).toFixed(2)}
         </Typography>
       </CardActions>
-    </Card>
+    </CardMui>
   );
 };
 
-export default CardFood;
+export default Card;

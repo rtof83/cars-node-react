@@ -18,8 +18,8 @@ const ListUsers = () => {
   const getData = async () => {
     setLoading(true);
 
-    // const query = !searchById ? 'products?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'products/' + searchById;
-    await api.get('users')
+    const query = !searchById ? 'users?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'users/' + searchById;
+    await api.get(query)
       .then(({ data }) => {
         data.length === undefined ? setData([data]) : setData(data);
       })

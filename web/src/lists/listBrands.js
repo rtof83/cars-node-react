@@ -17,8 +17,8 @@ const ListBrands = () => {
   const getData = async () => {
     setLoading(true);
 
-    // const query = !searchById ? 'orders?page=' + page + (searchByName ? '&customer=' + searchByName : '') : 'orders/' + searchById;
-    await api.get('brands')
+    const query = !searchById ? 'brands?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'brands/' + searchById;
+    await api.get(query)
       .then(({ data }) => {
         data.length === undefined ? setData([data]) : setData(data);
       })

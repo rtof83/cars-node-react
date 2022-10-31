@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 const SearchPanel = (searchById, searchByName, setSearch, setSearchById, setSearchByName, getDefault) => {
     const [ searchContext, ] = useContext(SearchContext);
 
-
     return (
         <FormControl sx={{ mx: 7, display: 'inline' }}>
             <FormControl sx={{ width: 300, mx: 1 }}>

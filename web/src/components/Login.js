@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api';
 import { UserContext } from '../contexts/Contexts';
+import api from '../api';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -16,8 +16,11 @@ const Login = () => {
     const getUser = async () => {
         await api.post('login', { name: values.name, password: values.password })
           .then(({ data }) => {
+            // data.exp = '';
             setUser(data);
-            localStorage.setItem('auth', JSON.stringify(data));
+            // console.log(data)
+            // localStorage.setItem('login', JSON.stringify(data));
+            api.defaults.headers.common = {'authorization': `Bearer ${data.token}`};
             navigate('/');
           })
           .catch(e => {
@@ -27,7 +30,7 @@ const Login = () => {
             };
             console.log(e);
           });
-    }
+        };
     
       return (
         <>
