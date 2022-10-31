@@ -26,7 +26,6 @@
 
 - Marca (Brand):
 ```javascript
-
     id: Integer,
     name: String
 ```
@@ -67,16 +66,17 @@
 &nbsp;
 
 ### a aplicação pode ser acessada através do link:
-- http://ecomm-mongodb-node.s3-website-us-east-1.amazonaws.com
+- http://car-catalog-node-mysql.s3-website-us-east-1.amazonaws.com
 - FRONT armazenado em instância Amazon S3;
-- API instanciado em EC2 AWS (http://34.235.154.60:3001);
+- API instanciado em EC2 AWS (http://18.234.224.108:3002);
+- Base de Dados instanciado em RDS (database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306);
 
 &nbsp;
 
 ### Implementações API:
-- [Collections Postman](https://github.com/rtof83/ecommerce-node-react/blob/main/samples/ecommerce.postman_collection.json);
+- [Collections Postman](https://github.com/rtof83/cars-node-react/blob/main/samples/car-catalog.postman_collection.json);
 
-- Utilização de [models](https://github.com/rtof83/ecommerce-node-react/tree/main/api/models) mongoose para Clientes, Produtos e Pedidos;
+- Utilização de [models Sequelize](https://github.com/rtof83/cars-node-react/tree/main/api/models);
 
 &nbsp;
 
