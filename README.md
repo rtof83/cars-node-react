@@ -56,8 +56,9 @@
 ## Inicialização
 - [CREATE DATABASE database](https://github.com/rtof83/cars-node-react/blob/main/samples/database.sql) (configuração inicial .env)
 - /web e /api -> npm start;
-- porta padrão API: 3001;
+- porta padrão API: (configuração inicial .env);
 - porta padrão WEB: 3000;
+- usuário padrão: { user: admin, password: admin }
 
 &nbsp;
 
@@ -95,6 +96,48 @@
 
     &nbsp;
 
+    - POST (rotas secundárias)
+        - {baseURL}/login -> verifica se usuário e senha são válidos, retornando: autorização, id, nome, tipo de acesso e token:
+
+            - exemplo de entrada:
+
+            ```javascript
+            {
+                "name": "username",
+                "password": "password",
+            }
+            ```
+
+            - exemplo de saída:
+
+            ```javascript
+            {
+                "auth": true,
+                "id": 1,
+                "name": "admin",
+                "access": "admin",
+                "token": "xxxxxxxxxxxxxxxx"
+            }
+            ```
+
+        &nbsp;
+
+        - {baseURL}/validate -> valida se o token informado é válido:
+
+            - exemplo de saída:
+
+            ```javascript
+            {
+                "id": 1,
+                "access": "admin",
+                "iat": 1667249381,
+                "exp": 1667249981
+            }
+            ```
+
+
+    &nbsp;
+
     - GET
         - {baseURL}/{route} -> retorna todos os registros;
         - {baseURL}/{route}/{id} -> retorna registro por id;
@@ -112,6 +155,8 @@
     - DELETE
         - {baseURL}/{route}/{id} -> exclui registro;
 
+&nbsp;
+
 - Middlewares:
     - [checkRoute](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkRoute.js):
         - recebe token via cabeçalho, verifica se a rota é pública ou privada e garante acesso;
@@ -122,7 +167,7 @@
         - Usuário com grupo de acesso 'user' possui acesso somente a listagens (este usuário visualiza e altera apenas suas informações (rota /users));
 
     - [checkAdminExists](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkAdminExists.js):
-        - garante a criação de um usuário padrão admin na primeira execução da base de dados;
+        - garante a criação de um usuário padrão admin na primeira execução com a base de dados;
 
     - [checkAdminDel](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/checkAdminDel.js):
         - garante a manutenção de pelo menos um usuário admin ao excluir usuários;
@@ -198,3 +243,4 @@
 ### Próximos passos:
 - Paginação na home;
 - Página detalhada sobre o Carro selecionado;
+- Senha criptografada na base de dados;
