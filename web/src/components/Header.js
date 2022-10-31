@@ -10,6 +10,7 @@ const Header = () => {
     const logout = () => {
       if (window.confirm('O usuário será desconectado!')) {
         setUser([]);
+        localStorage.clear();
         navigate('/');
       };
     };

@@ -26,10 +26,12 @@ const CountDown = () => {
       // When count down is over
       clearInterval(count);
       setResult('tempo esgotado');
-      alert('Atenção! Necessário realizar novo login.');
-
+      
       setUser([]);
+      localStorage.clear();
       navigate('/');
+      
+      alert('Atenção! Necessário realizar novo login.');
     } else {
       // Output the result
       setResult(minutes + "m " + seconds + "s");

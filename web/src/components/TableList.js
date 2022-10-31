@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts/Contexts';
 import searchPanel from './SearchPanel';
@@ -16,8 +16,6 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
-import CarsStamp from '../assets/cars.webp';
 
 const TableList = ( listName,
                     tableCell,
@@ -29,6 +27,13 @@ const TableList = ( listName,
                     navigate, path ) => {
 
   const [ user ] = useContext(UserContext);
+
+  const [ checkAcess, setCheckAcess ] = useState(false);
+
+  useEffect(() => {
+    if (user.access !== 'admin' && path !== 'user')
+      setCheckAcess(true);
+  }, []);
 
   // format specific cells
   const checkCell = (item, cell) => {
@@ -70,7 +75,8 @@ const TableList = ( listName,
                       <StyledTableCell align={head.align}>{head.fieldName}</StyledTableCell>)}
 
                   {/* render update button path exist */}
-                  { path !== 'order' && <StyledTableCell align="right" /> }
+                  {/* { path !== 'order' && <StyledTableCell align="right" /> } */}
+                  <StyledTableCell align="right" />
 
                   <StyledTableCell align="right" />
               </TableRow>
@@ -88,9 +94,10 @@ const TableList = ( listName,
                     }
 
                     {/* render update button path exist */}
-                    { path !== 'order' && <StyledTableCell align="right"><button onClick={() => navigate(`/${path}/${path === 'product' ? item.sku : item.id}`)}>Alterar</button></StyledTableCell> }
-                    
-                    <StyledTableCell align="right"><button onClick={() => deleteRecord(path === 'product' ? item.sku : item.id, path === 'order' ? item.customer_name : item.name, api, getData, path)}>Excluir</button></StyledTableCell>
+                    {/* { path !== 'order' && <StyledTableCell align="right"><button onClick={() => navigate(`/${path}/${path === 'product' ? item.sku : item.id}`)}>Alterar</button></StyledTableCell> } */}
+
+                    <StyledTableCell align="right"><button disabled={checkAcess} onClick={() => navigate(`/${path}/${item.id}`)}>Alterar</button></StyledTableCell>
+                    <StyledTableCell align="right"><button disabled={checkAcess} onClick={() => deleteRecord(item.id, item.name, api, getData, path)}>Excluir</button></StyledTableCell>
                   </StyledTableRow>
                 :
                 <StyledTableCell colSpan={7} align="center">
