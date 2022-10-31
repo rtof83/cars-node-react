@@ -1,5 +1,6 @@
 /backup
 /files
+/node_modules
 
 /api/node_modules
 /api/.env
