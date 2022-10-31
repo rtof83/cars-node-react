@@ -54,18 +54,36 @@
 &nbsp;
 
 ## Inicialização
-- [CREATE DATABASE database](https://github.com/rtof83/cars-node-react/blob/main/samples/database.sql) (configuração inicial .env)
+- [CREATE DATABASE database](https://github.com/rtof83/cars-node-react/blob/main/samples/database.sql)
 - /web e /api -> npm start;
-- porta padrão API: (configuração inicial .env);
+- porta padrão API: ([configuração inicial .env](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example));
 - porta padrão WEB: 3000;
-- usuário padrão: { user: admin, password: admin }
+- usuário padrão: ``` { user: admin, password: admin } ```;
 
 &nbsp;
 
 ## Configurações
 - [API - conexão com a base de dados](https://github.com/rtof83/cars-node-react/blob/main/api/database/conn.js);
 - [FRONT - conexão com a API](https://github.com/rtof83/cars-node-react/blob/main/web/src/api.js);
-- [ENV - arquivo de configuração inicial](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example) (deve ser renomeado para .env)
+- [ENV - arquivo de configuração inicial](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example) (deve ser renomeado para .env):
+    - exemplo de configuração:
+
+    ```javascript
+        APP_PORT = 3002 -> porta de acesso da API
+
+        DB_NAME = database
+        DB_USER = user_db
+        DB_PASS = pass_dn
+
+        DB_DIALECT = mysql
+        DB_HOST = localhost
+        DB_PORT = 3306
+
+        SECRET = "SECRET" -> variável utilizada para gerar a assinatura JWT
+        SECRET_TIMEOUT = 60000 -> (10 minutos) -> tempo de expiração da assinatura
+
+        PAGE_SIZE = 10 -> número de registros por páginas 
+    ```
 
 &nbsp;
 
@@ -122,7 +140,7 @@
 
         &nbsp;
 
-        - {baseURL}/validate -> valida se o token informado é válido:
+        - {baseURL}/validate -> verifica se o token informado (via cabeçalho) é válido:
 
             - exemplo de saída:
 
@@ -173,10 +191,10 @@
         - garante a manutenção de pelo menos um usuário admin ao excluir usuários;
     
     - [validate](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/validate.js):
-        - criação de assinatura JWT (configuração inicial .env);
+        - criação de assinatura JWT;
 
 - Paginação:
-    - retorna até 10 registros por página (configuração inicial .env);
+    - retorna número de registros por página ([configuração inicial .env](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example));
 
 - Buscas:
     - localização por id ou nome em Carros, Marcas, Lojas e Usuários;
