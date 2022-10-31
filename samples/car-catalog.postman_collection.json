@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "28207545-91d7-402c-b82d-d5926b41aeba",
+		"name": "car-catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17279479"
+	},
+	"item": [
+		{
+			"name": "brands",
+			"item": [
+				{
+					"name": "all brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/brands",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "brand by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/brands/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"brands",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"marca3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/brands",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update brand",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"marca1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/brands/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete brand",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/brands/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"brands",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stores",
+			"item": [
+				{
+					"name": "all stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/stores",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/stores/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"stores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"aa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/stores",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"stores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update store",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"SP\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/stores/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"stores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete store",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/stores/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"stores",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cars",
+			"item": [
+				{
+					"name": "all cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/cars",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "car by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/cars/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"eco2\",\n    \"model\": 2000,\n    \"price\": 60000,\n    \"km\": 55,\n    \"desc\": \"desc\",\n    \"image\": \"http\",\n    \"brandId\": 1,\n    \"storeId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/cars",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"eco222\",\n    \"model\": 2000,\n    \"price\": 55000.00,\n    \"km\": 55,\n    \"desc\": \"desc\",\n    \"image\": \"http\",\n    \"brandId\": 1,\n    \"storeId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/cars/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/cars/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"cars",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/users/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"password\": \"123\",\n    \"email\": \"admin@admin.com\",\n    \"access\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"password\": \"123\",\n    \"email\": \"admin@admin.com\",\n    \"access\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/users/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/users/33",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users",
+								"33"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "validate",
+			"item": [
+				{
+					"name": "validate access",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVJ9.eyJpZCI6MiwiYWNjZXNzIjoidXNlciIsImlhdCI6MTY2NzE1MDIwMywiZXhwIjoxNjY3MTUwNTAzfQ.G3yfE5iBW7OWZLrUJPsbZmnbpXRYSsStayRWonqod7o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/validate",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
