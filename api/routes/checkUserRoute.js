@@ -13,7 +13,7 @@ const checkUser = (route) => {
 
       if (!user)
         return res.status(401).json({ error: 'user or password invalid' });
-  
+
       // sign token
       const token = jwt.sign({ id: user.id, access: user.access },
                                process.env.SECRET,
