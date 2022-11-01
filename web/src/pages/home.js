@@ -13,7 +13,7 @@ const Home = () => {
 
     const [ loading, setLoading ] = useState(false);
 
-    let userStorage = {};
+    let userStorage = JSON.parse(localStorage.getItem('login'));
 
     const getProducts = async () => {
       setLoading(true);
@@ -29,10 +29,9 @@ const Home = () => {
 
     const getCountDown = async () => {
       await api.post('validate')
-        .then(({ data }) => {
-    
+        .then(() => {
           if (!userStorage) {
-            setUser({...user, exp: data.exp});
+            setUser(user);
             localStorage.setItem('login', JSON.stringify(user));
           };
         })
@@ -45,14 +44,12 @@ const Home = () => {
     };
 
     const checkUser = () => {
-      userStorage = JSON.parse(localStorage.getItem('login'));
-      
       if (userStorage) {
         api.defaults.headers.common = {'authorization': `Bearer ${userStorage.token}`};
         setUser(userStorage);
-      };
 
-      getCountDown();
+        getCountDown();
+      };
     };
 
     useEffect(() => {

@@ -16,10 +16,8 @@ const Login = () => {
     const getUser = async () => {
         await api.post('login', { name: values.name, password: values.password })
           .then(({ data }) => {
-            // data.exp = '';
             setUser(data);
-            // console.log(data)
-            // localStorage.setItem('login', JSON.stringify(data));
+            localStorage.setItem('login', JSON.stringify(data));
             api.defaults.headers.common = {'authorization': `Bearer ${data.token}`};
             navigate('/');
           })

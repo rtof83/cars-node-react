@@ -21,7 +21,7 @@ const CountDown = () => {
     // Time calculations for days, hours, minutes and seconds
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
+
     if (distance < 0) {
       // When count down is over
       clearInterval(count);
@@ -30,8 +30,6 @@ const CountDown = () => {
       setUser([]);
       localStorage.clear();
       navigate('/');
-    } else if (distance <= 10) {
-      setResult('Atenção! Necessário realizar novo login.');
     } else {
       // Output the result
       setResult(minutes + "m " + seconds + "s");
