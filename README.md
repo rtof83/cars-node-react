@@ -22,7 +22,8 @@
     model: Integer,
     price: Decimal,
     km: Integer,
-    birth: Date
+    desc: String,
+    image: String
 ```
 
 - Marca (Brand):
@@ -79,7 +80,7 @@
         DB_HOST = localhost
         DB_PORT = 3306
 
-        SECRET = "SECRET" -> variável utilizada para gerar a assinatura JWT
+        SECRET = secret_word -> variável utilizada para gerar a assinatura JWT
         SECRET_TIMEOUT = 60000 -> (10 minutos) -> tempo de expiração da assinatura
 
         PAGE_SIZE = 10 -> número de registros por páginas 
