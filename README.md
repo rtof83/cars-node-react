@@ -192,7 +192,7 @@
         - garante a manutenção de pelo menos um usuário admin ao excluir usuários;
     
     - [validate](https://github.com/rtof83/cars-node-react/blob/main/api/middlewares/validate.js):
-        - criação de assinatura JWT;
+        - validação da assinatura JWT;
 
 - Paginação:
     - retorna número de registros por página ([configuração inicial .env](https://github.com/rtof83/cars-node-react/blob/main/api/.env.example));
