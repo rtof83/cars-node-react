@@ -1,13 +1,13 @@
 const { app } = require('./database/conn');
-const cors = require('cors');
 
+const cors = require('cors');
 app.use(cors());
 
 const models = require('./models');
 const methods = require('./methods');
 const routes = [ '/cars', '/stores', '/brands', '/users' ];
 
-const checkAdminExists = require('./middlewares/checkAdminExists');
+// const checkAdminExists = require('./middlewares/checkAdminExists');
 
 // mount standard routes
 for (let i = 0; i < routes.length; i++) {
@@ -27,4 +27,7 @@ require('./routes/checkUserRoute')('/login');
 require('./routes/checkValidate')('/validate');
 
 // verify if any admin exists on database
-checkAdminExists();
+require('./middlewares/checkAdminExists');
+
+// custom get query route
+require('./routes/searchByQuery');
