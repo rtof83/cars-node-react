@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Servidor:                     database.c4gffxjofhme.us-east-1.rds.amazonaws.com
--- Versão do servidor:           8.0.28 - Source distribution
--- OS do Servidor:               Linux
--- HeidiSQL Versão:              12.1.0.6562
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -58,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `cars` (
 -- Copiando dados para a tabela verzel.cars: ~0 rows (aproximadamente)
 DELETE FROM `cars`;
 INSERT INTO `cars` (`id`, `name`, `model`, `price`, `km`, `desc`, `image`, `createdAt`, `updatedAt`, `brandId`, `storeId`) VALUES
-	(1, 'Carro 01', 2000, 50000, 10000, 'descrição do carro 01', 'https://www.kbb.com/wp-content/uploads/2020/04/2005-toyota-camry-front-left.jpg', '2022-10-31 20:06:17', '2022-10-31 20:09:28', 1, 1),
-	(2, 'Carro 02', 2000, 70000, 20000, 'descrição do carro 02', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzsjiolUlnZJZPfZBVp4F_gheyR7gXWn7oIFl-McIpMHFYUwxSsydDqSpwon7snKRRtE&usqp=CAU', '2022-10-31 20:06:42', '2022-10-31 20:08:51', 2, 2),
-	(3, 'Carro 03', 2001, 55000, 5000, 'descrição do carro 03', 'https://images.autotrader.com/hn/c/bd3aa903d4824b5fa53e8962d42eb93c.jpg', '2022-10-31 20:07:06', '2022-10-31 20:10:11', 3, 6);
+	(1, 'Veículo 01', 2000, 50000, 10000, 'descrição do Veículo 01', 'https://www.kbb.com/wp-content/uploads/2020/04/2005-toyota-camry-front-left.jpg', '2022-10-31 20:06:17', '2022-10-31 20:09:28', 1, 1),
+	(2, 'Veículo 02', 2000, 70000, 20000, 'descrição do Veículo 02', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzsjiolUlnZJZPfZBVp4F_gheyR7gXWn7oIFl-McIpMHFYUwxSsydDqSpwon7snKRRtE&usqp=CAU', '2022-10-31 20:06:42', '2022-10-31 20:08:51', 2, 2),
+	(3, 'Veículo 03', 2001, 55000, 5000, 'descrição do Veículo 03', 'https://images.autotrader.com/hn/c/bd3aa903d4824b5fa53e8962d42eb93c.jpg', '2022-10-31 20:07:06', '2022-10-31 20:10:11', 3, 6);
 
 -- Copiando estrutura para tabela verzel.stores
 CREATE TABLE IF NOT EXISTS `stores` (
@@ -99,9 +92,3 @@ DELETE FROM `users`;
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `access`, `createdAt`, `updatedAt`) VALUES
 	(4, 'admin', 'admin', 'admin@admin.com', 'admin', '2022-10-31 18:37:52', '2022-10-31 18:37:52'),
 	(5, 'user', 'user', 'user@user.com', 'user', '2022-10-31 20:05:42', '2022-10-31 20:11:44');
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
