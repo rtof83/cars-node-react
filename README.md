@@ -162,6 +162,7 @@
         - {baseURL}/{route}?page={page} -> retorna registros por página;
         - {baseURL}/{route}?name={name} -> retorna registros por nome;
         - {baseURL}/{route}?page={page}&name={name} -> retorna registros por nome e página;
+        - {baseURL}/search/{table}?{param1}&{param2}... -> retorna registros através de parâmetros [customizados](https://github.com/rtof83/cars-node-react/blob/main/api/routes/searchByQuery.js);
 
     &nbsp;
 
@@ -259,6 +260,5 @@
 &nbsp;
 
 ### Próximos passos:
-- Paginação na home;
 - Página detalhada sobre o Veículo selecionado;
 - Senha criptografada na base de dados;
