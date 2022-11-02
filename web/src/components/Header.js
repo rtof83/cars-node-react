@@ -22,7 +22,7 @@ const Header = () => {
 
                 {/* title */}
                 <Link to={'/'}>
-                    <div className="navbar-brand">Catálogo de Carros</div>
+                    <div className="navbar-brand">Catálogo de Veículos</div>
                 </Link>
 
                 </div>
@@ -34,14 +34,14 @@ const Header = () => {
                 <ul className="nav navbar-nav">
 
                     { user.access === 'admin' && <>
-                        <li><Link to={'/car'}>Carros</Link></li>
+                        <li><Link to={'/car'}>Veículos</Link></li>
                         <li><Link to={'/brand'}>Marcas</Link></li>
                         <li><Link to={'/store'}>Lojas</Link></li>
                         <li><Link to={'/user'}>Usuários</Link></li>
                     </>}
 
 
-                    <li><Link to={'/listCars'}>Lista Carros</Link></li>
+                    <li><Link to={'/listCars'}>Lista Veículos</Link></li>
                     <li><Link to={'/listBrands'}>Lista Marcas</Link></li>
                     <li><Link to={'/listStores'}>Lista Lojas</Link></li>
                     <li><Link to={'/listUsers'}>Lista Usuários</Link></li>

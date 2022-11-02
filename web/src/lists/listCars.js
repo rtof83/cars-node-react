@@ -19,7 +19,7 @@ const ListCars = () => {
   const getData = async () => {
     setLoading(true);
 
-    const query = !searchById ? 'cars?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'cars/' + searchById;
+    const query = !searchById ? '/search/cars?page=' + page + (searchByName ? '&name=' + searchByName : '') : 'search/cars?id=' + searchById;
     await api.get(query)
       .then(({ data }) => {
         data.length === undefined ? setData([data]) : setData(data);
@@ -33,7 +33,7 @@ const ListCars = () => {
   };
 
   useEffect(() => {
-    setSearchContext({ id: 'ID', name: 'Nome do Carro' });
+    setSearchContext({ id: 'ID', name: 'Nome do Veículo' });
   }, []);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const ListCars = () => {
 
   return (
     <>
-      { TableList( 'Carros',
+      { TableList( 'Veículos',
 
                    [ { align: 'center', fieldName: 'ID', field: 'id' },
                      { align: 'left', fieldName: 'Nome', field: 'name' },

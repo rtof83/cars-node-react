@@ -46,7 +46,7 @@ const Car = () => {
           .then(() => navigate('/listCars'))
           .catch(e => {
             if (e.response.status === 419)
-              alert('Carro existente na base de dados!');
+              alert('Veículo existente na base de dados!');
           });
       };
     };
@@ -92,7 +92,7 @@ const Car = () => {
     
     return (
       <>
-      <h3>Cadastro de Carros</h3>
+      <h3>Cadastro de Veículos</h3>
 
       <div className="gridCustomer">
 
