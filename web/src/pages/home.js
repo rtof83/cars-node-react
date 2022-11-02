@@ -101,7 +101,7 @@ const Home = () => {
   return (
     <> 
       <div className="container text-center">
-        { user.name && <><h3>Olá {user.name}</h3></> }
+        { user.name && <><h3>Olá, {user.name}!</h3></> }
 
         { loading ? <h3><CircularProgress /></h3> : <>
 
@@ -157,6 +157,8 @@ const Home = () => {
                       image={item.image}
                       name={item.name}
                       desc={item.desc}
+                      brand={item.brand}
+                      store={item.store}
                       price={item.price} />
             </Grid>
             ))}

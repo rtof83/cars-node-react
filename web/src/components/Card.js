@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CarsStamp from '../assets/cars.webp';
 
-const Card = ({ id, image, name, desc, price }) => {
+const Card = ({ id, image, name, desc, brand, store, price }) => {
   return (
     <CardMui className='cardList' sx={{ maxWidth: 265, height: 345 }}>
       <CardHeader
@@ -26,6 +26,14 @@ const Card = ({ id, image, name, desc, price }) => {
       />
 
       <CardContent>
+        <Typography variant="body2" color="text.primary">
+          {brand}
+        </Typography>
+
+        <Typography variant="body2" color="text.primary">
+          {store}
+        </Typography>
+
         <Typography variant="body2" color="text.secondary">
           {desc}
         </Typography>
