@@ -570,6 +570,31 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "search custom query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PORT}}/search/cars/page=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"search",
+								"cars",
+								"page=1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
