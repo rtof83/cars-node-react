@@ -7,8 +7,6 @@ const models = require('./models');
 const methods = require('./methods');
 const routes = [ '/cars', '/stores', '/brands', '/users' ];
 
-// const checkAdminExists = require('./middlewares/checkAdminExists');
-
 // mount standard routes
 for (let i = 0; i < routes.length; i++) {
   // for each method
