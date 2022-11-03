@@ -2,16 +2,16 @@ const User = require('../models/user');
 
 const checkAdminExists = async () => {
   try {
-    const user = await User.findOne({ where: { access: 'admin' }});
+    await User.sync();
 
-    if (!user) {
-      User.create({ name: 'admin',
-                    password: 'admin',
-                    email: 'admin@admin.com',
-                    access: 'admin' });
+    const [ , created ] = await User.findOrCreate({ where: { access: 'admin' },
+                                                    defaults: { name: 'admin',
+                                                                password: 'admin',
+                                                                email: 'admin@admin.com',
+                                                                access: 'admin' }
+                                                  });
 
-      console.log('admin created.');
-    };
+      if (created) console.log('admin created');
   } catch (error) {
     console.log(error);
   };

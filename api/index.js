@@ -27,7 +27,7 @@ require('./routes/checkUserRoute')('/login');
 require('./routes/checkValidate')('/validate');
 
 // verify if any admin exists on database
-require('./middlewares/checkAdminExists');
+require('./middlewares/checkAdminExists')();
 
 // custom get query route
 require('./routes/searchByQuery');
